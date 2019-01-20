@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Recipe = require('../models/recipe');
 const Ingredient = require('../models/ingredient');
 const RecipeIngredient = sequelize.define(
-  'recipeIngredient',
+  'recipeIngredients',
   {
     idRecipe: {
       type: Sequelize.INTEGER
@@ -19,11 +19,18 @@ const RecipeIngredient = sequelize.define(
     }
   },
   {
+    freezeTableName:true,
     timestamps: false
   }
 );
-RecipeIngredient.hasMany(Recipe, { foreignKey: 'idRecipe', sourceKey: 'id' });
-Recipe.belongsTo(RecipeIngredient, { foreignKey: 'idRecipe', targetKey: 'id' });
-RecipeIngredient.hasMany(Ingredient, { foreignKey: 'idIngredient', sourceKey: 'id' });
-Ingredient.belongsTo(RecipeIngredient, { foreignKey: 'idIngredient', targetKey: 'id' });
+Recipe.belongsToMany(Ingredient, {
+  onDelete: 'CASCADE',
+  through: RecipeIngredient,
+  foreignKey: 'idRecipe',
+});
+Ingredient.belongsToMany(Recipe, {
+  onDelete: 'CASCADE',
+  through: RecipeIngredient,
+  foreignKey: 'idIngredient',
+});
 module.exports = RecipeIngredient;

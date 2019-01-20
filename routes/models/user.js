@@ -1,4 +1,4 @@
-const sequelize = require('../connect');
+const sequelize = require('../../db');
 const Sequelize = require('sequelize');
 const User = sequelize.define(
   'user',
@@ -29,7 +29,8 @@ const User = sequelize.define(
     }
   },
   {
-    timestamps: false
+    timestamps: false,
+    tableName: 'user'
   }
 );
 

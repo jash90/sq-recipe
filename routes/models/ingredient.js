@@ -1,4 +1,4 @@
-const sequelize = require('../connect');
+const sequelize = require('../../db');
 const Sequelize = require('sequelize');
 const Ingredient = sequelize.define(
   'ingredient',
@@ -13,7 +13,8 @@ const Ingredient = sequelize.define(
     }
   },
   {
-    timestamps: false
+    timestamps: false,
+    tableName: 'ingredient'
   }
 );
 

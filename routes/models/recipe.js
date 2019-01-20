@@ -1,4 +1,4 @@
-const sequelize = require('../connect');
+const sequelize = require('../../db');
 const Sequelize = require('sequelize');
 const User = require("../models/user");
 const Recipe = sequelize.define(
@@ -24,7 +24,8 @@ const Recipe = sequelize.define(
     }
   },
   {
-    timestamps: false
+    timestamps: false,
+    tableName : 'recipe'
   }
 );
 User.hasMany(Recipe, {foreignKey: 'idUser', sourceKey: 'id'});

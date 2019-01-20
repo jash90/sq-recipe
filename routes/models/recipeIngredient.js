@@ -1,9 +1,9 @@
-const sequelize = require('../connect');
+const sequelize = require('../../db');
 const Sequelize = require('sequelize');
 const Recipe = require('../models/recipe');
 const Ingredient = require('../models/ingredient');
 const RecipeIngredient = sequelize.define(
-  'recipeIngredients',
+  'recipeIngredient',
   {
     idRecipe: {
       type: Sequelize.INTEGER
@@ -20,7 +20,8 @@ const RecipeIngredient = sequelize.define(
   },
   {
     freezeTableName:true,
-    timestamps: false
+    timestamps: false,
+    tableName: 'recipeIngredient'
   }
 );
 Recipe.belongsToMany(Ingredient, {

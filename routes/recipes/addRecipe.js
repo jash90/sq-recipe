@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const Ingredient = require('./models/ingredient');
-const Recipe = require('./models/recipe');
-const RecipeIngredient = require('./models/recipeIngredient');
+const Ingredient = require('../models/ingredient');
+const Recipe = require('../models/recipe');
+const RecipeIngredient = require('../models/recipeIngredient');
 const db = require('./connect');
 /* GET home page. */
 router.post('/', async (req, res, next) => {
@@ -16,7 +16,7 @@ router.post('/', async (req, res, next) => {
   let transaction;
   let recipe;
   try {
-    // get transaction
+    
     transaction = await db.transaction();
 
     for (let x = 0; x < ingredients.length; x++) {
@@ -63,32 +63,6 @@ router.post('/', async (req, res, next) => {
     await transaction.rollback();
   }
 
-  // return sequelize.transaction().then(function (t) {
-  //     return User.create({
-  //       firstName: 'Bart',
-  //       lastName: 'Simpson'
-  //     }, {transaction: t}).then(function (user) {
-  //       return user.addSibling({
-  //         firstName: 'Lisa',
-  //         lastName: 'Simpson'
-  //       }, {transaction: t});
-  //     }).then(function () {
-  //       return t.commit();
-  //     }).catch(function (err) {
-  //       return t.rollback();
-  //     });
-  //   });
 });
-
-// Ingredient.create({
-//   name: 'Barts',
-// }, {transaction}).then(function (ingredient) {
-//     console.log(ingredient);
-
-//   res.json(ingredient);
-//   return transaction.commit();
-// }).catch(function (err) {
-//   return transaction.rollback();
-// });
 
 module.exports = router;

@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const Ingredient = require('../models/ingredient');
-const Recipe = require('../models/recipe');
-const RecipeIngredient = require('../models/recipeIngredient');
-const db = require('./connect');
-/* GET home page. */
+const { Ingredient, Recipe, RecipeIngredient } = require('../../models');
+const db = require('../../db');
 router.post('/', async (req, res, next) => {
     const ingredients = req.body.ingredients;
     const name = req.body.name;

@@ -1,7 +1,7 @@
-const sequelize = require('../../db');
+const db = require('../db');
 const Sequelize = require('sequelize');
 const User = require("../models/user");
-const Recipe = sequelize.define(
+const Recipe = db.define(
   'recipe',
   {
     id: {

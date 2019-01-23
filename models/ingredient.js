@@ -1,6 +1,6 @@
-const sequelize = require('../../db');
+const db = require('../db');
 const Sequelize = require('sequelize');
-const Ingredient = sequelize.define(
+const Ingredient = db.define(
   'ingredient',
   {
     id: {

@@ -1,6 +1,6 @@
 const db = require('../db');
 const Sequelize = require('sequelize');
-const User = require("../models/user");
+const User = require("./user");
 const Recipe = db.define(
   'recipe',
   {

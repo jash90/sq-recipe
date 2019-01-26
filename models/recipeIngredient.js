@@ -1,7 +1,7 @@
 const db = require('../db');
 const Sequelize = require('sequelize');
-const Recipe = require('../models/recipe');
-const Ingredient = require('../models/ingredient');
+const Recipe = require('./recipe');
+const Ingredient = require('./ingredient');
 const RecipeIngredient = db.define(
   'recipeIngredient',
   {

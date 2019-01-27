@@ -56,10 +56,23 @@ router.post('/', async(req, res, next) => {
             .then(data => {
                 oldRecipeIngredients = data.map(ri => {
                     const item = ri.dataValues;
-                    return item;
+                    return {id: item.idIngredient};
                 });
             });
-            console.log({"ingredients":ingredients, "ingredientsRQ":ingredientsRQ});
+
+        const newIngredients = ingredientsRQ.map(r => {
+            return {id: r.id};
+        });
+
+        const deleteIngredients = _.differenceBy(oldRecipeIngredients, newIngredients, 'id');
+        deleteIngredients.forEach(element => {
+            RecipeIngredient.destroy({
+                where: {
+                    idIngredient: element.id,
+                    idRecipe: recipe.id
+                }
+            });
+        });
         for (let x = 0; x < ingredientsRQ.length; x++) {
             const irq = ingredientsRQ[x];
             const i = ingredients[x];
@@ -72,17 +85,12 @@ router.post('/', async(req, res, next) => {
                 },
                 transaction
             }).then(data => {
-                data.forEach(ri=>{
+                data.forEach(ri => {
                     recipeIngredients.push(ri.dataValues);
                 });
-               
+
             });
         }
-        oldRecipeIngredients.forEach(item => {
-            if (!recipeIngredients.includes(item)) {
-                RecipeIngredient.destroy({where :item});
-            }
-        });
         res.json({recipe, recipeIngredients});
         await transaction.commit();
     } catch (err) {

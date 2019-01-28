@@ -1,15 +1,15 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2019-01-28T14:54:16.858Z",
+	"__export_date": "2019-01-28T15:02:50.620Z",
 	"__export_source": "insomnia.desktop.app:v6.3.2",
 	"resources": [
 		{
 			"_id": "wrk_f7940d610a824fc0afe364636030d9c4",
 			"created": 1494325036762,
 			"description": "",
-			"modified": 1510062822578,
-			"name": "Insomnia",
+			"modified": 1548687717828,
+			"name": "RecipeApi",
 			"parentId": null,
 			"_type": "workspace"
 		},

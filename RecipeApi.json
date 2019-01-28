@@ -1,0 +1,373 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2019-01-28T14:54:16.858Z",
+	"__export_source": "insomnia.desktop.app:v6.3.2",
+	"resources": [
+		{
+			"_id": "wrk_f7940d610a824fc0afe364636030d9c4",
+			"created": 1494325036762,
+			"description": "",
+			"modified": 1510062822578,
+			"name": "Insomnia",
+			"parentId": null,
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_e39aaae2510e429881bc9c4c8707b57f",
+			"color": null,
+			"created": 1495532889778,
+			"data": {},
+			"isPrivate": false,
+			"metaSortKey": 1536132021151,
+			"modified": 1495532889778,
+			"name": "Base Environment",
+			"parentId": "wrk_f7940d610a824fc0afe364636030d9c4",
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_3fa8ea88e61849459a5db2048004a90f",
+			"cookies": [],
+			"created": 1505456110531,
+			"modified": 1505456110531,
+			"name": "Default Jar",
+			"parentId": "wrk_f7940d610a824fc0afe364636030d9c4",
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "fld_a5b9b4762e304a6e812c183acf61b810",
+			"created": 1545505242800,
+			"description": "",
+			"environment": {
+				"api": "localhost:3000",
+				"token": "token"
+			},
+			"metaSortKey": -1545505242800,
+			"modified": 1545505373173,
+			"name": "RecipeApi",
+			"parentId": "wrk_f7940d610a824fc0afe364636030d9c4",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_ca7ca4e4553e4a96aad0fde02898bd2b",
+			"created": 1548683469815,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1545573246246,
+			"modified": 1548683475528,
+			"name": "Ingredient",
+			"parentId": "fld_a5b9b4762e304a6e812c183acf61b810",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_316d1566557348689892e40afc84db2c",
+			"created": 1548683482932,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1548683482932,
+			"modified": 1548683482932,
+			"name": "Auth",
+			"parentId": "fld_a5b9b4762e304a6e812c183acf61b810",
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
+			"created": 1548683494261,
+			"description": "",
+			"environment": {},
+			"metaSortKey": -1548683494261,
+			"modified": 1548683494261,
+			"name": "Recipe",
+			"parentId": "fld_a5b9b4762e304a6e812c183acf61b810",
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_a9832ae2e33647838f0fbd99fd55ac63",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{}"
+			},
+			"created": 1548683810170,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_662415cd8e9f48fc81f51ccd90ac46fb",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548683810170,
+			"method": "POST",
+			"modified": 1548683944912,
+			"name": "ingredients",
+			"parameters": [],
+			"parentId": "fld_ca7ca4e4553e4a96aad0fde02898bd2b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/ingredients",
+			"_type": "request"
+		},
+		{
+			"_id": "req_e979986571b54bb5b19e55b66e02f9ee",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\n}"
+			},
+			"created": 1548683825018,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_31a5ce4cdf954e3ab747ee832f0b8737",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548683825018,
+			"method": "POST",
+			"modified": 1548683923663,
+			"name": "addIngredient",
+			"parameters": [],
+			"parentId": "fld_ca7ca4e4553e4a96aad0fde02898bd2b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/addIngredient",
+			"_type": "request"
+		},
+		{
+			"_id": "req_2c6c118c049844fc886c7bb5b467265b",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"name\": \"A\"\n}"
+			},
+			"created": 1548684976090,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_df219b5c57214cdc8f780b85095b37de",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548684976090,
+			"method": "POST",
+			"modified": 1548685048593,
+			"name": "getByName",
+			"parameters": [],
+			"parentId": "fld_ca7ca4e4553e4a96aad0fde02898bd2b",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/ingredientsByName",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d4ba510283fc4647b906218dfb903a13",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"username\": \"test\",\n\t\"password\": \"test\"\n}"
+			},
+			"created": 1545573240155,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_378677386f744da0ae7bd7c0ba219e9b",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1545573246246,
+			"method": "POST",
+			"modified": 1548683512556,
+			"name": "register",
+			"parameters": [],
+			"parentId": "fld_316d1566557348689892e40afc84db2c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/register",
+			"_type": "request"
+		},
+		{
+			"_id": "req_1ceb0dfde2e7475281a11748c2f28801",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"username\": \"test\",\n\t\"password\": \"test\"\n}"
+			},
+			"created": 1545573246196,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_aa2744655460468091abc865d4ab34b1",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1545573246196,
+			"method": "POST",
+			"modified": 1548683502156,
+			"name": "login",
+			"parameters": [],
+			"parentId": "fld_316d1566557348689892e40afc84db2c",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/login",
+			"_type": "request"
+		},
+		{
+			"_id": "req_6134203581234877bacb313d4d913356",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"name\": \"my\",\n\t\t\t\"unit\": \"szt.\",\n\t\t\t\"count\": 10\n\t\t},\n\t\t{\n\t\t\t\"name\": \"mydło\",\n\t\t\t\"unit\": \"dag\",\n\t\t\t\"count\": 10\n\t\t}\n\t],\n\t\"name\":\"skdgfkjhsdfhksjdh\",\n\t\"content\":\"test\",\n\t\"preparationTime\":30\n\t\n}"
+			},
+			"created": 1545505252274,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_cb8628ffb38e45cca378a8219cf4cf9d",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1545505252274,
+			"method": "POST",
+			"modified": 1548683498514,
+			"name": "addRecipe",
+			"parameters": [],
+			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4fa3cd12a7364b7a96576c79c65de3db",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"name\": \"my\",\n\t\t\t\"unit\": \"szt.\",\n\t\t\t\"count\": 10\n\t\t},\n\t\t{\n\t\t\t\"name\": \"mydło\",\n\t\t\t\"unit\": \"dag\",\n\t\t\t\"count\": 10\n\t\t}\n\t],\n\t\"name\":\"skdgfkjhsdfhksjdh\",\n\t\"content\":\"test\",\n\t\"preparationTime\":30\n\t\n}"
+			},
+			"created": 1548683529361,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_105432281c7547db9cb60ff1c3611368",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548683529361,
+			"method": "POST",
+			"modified": 1548684030232,
+			"name": "editRecipe",
+			"parameters": [],
+			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/editRecipe",
+			"_type": "request"
+		},
+		{
+			"_id": "req_f4b86e3f287b4d03a304e9f1ea615899",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\n}"
+			},
+			"created": 1548683585628,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_d343c67f24e943cf8b6edfe584a9d87d",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548683585628,
+			"method": "POST",
+			"modified": 1548684089042,
+			"name": "removeRecipe",
+			"parameters": [],
+			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/removeRecipe",
+			"_type": "request"
+		},
+		{
+			"_id": "req_11021f98dee44da5b00ea97f4fac27b9",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\n}"
+			},
+			"created": 1548683784537,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_3f2a4b5bb8624a7da645fa62a8be367c",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548683784537,
+			"method": "POST",
+			"modified": 1548684117216,
+			"name": "recipes",
+			"parameters": [],
+			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/recipes",
+			"_type": "request"
+		}
+	]
+}

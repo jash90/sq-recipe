@@ -24,8 +24,7 @@ const Recipe = db.define(
     }
   },
   {
-    timestamps: false,
-    tableName : 'recipe'
+    timestamps: false
   }
 );
 User.hasMany(Recipe, {foreignKey: 'idUser', sourceKey: 'id'});

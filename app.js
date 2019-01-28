@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var {addIngredient, getIngredients} = require('./routes/ingredient');
+var {addIngredient, getIngredients, getIngredientsByName} = require('./routes/ingredient');
 var {addRecipe, editRecipe, removeRecipe, getRecipes} = require('./routes/recipes');
 var index = require("./routes/index");
 
@@ -21,8 +21,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
+
 app.use('/addIngredient', addIngredient);
 app.use('/ingredients', getIngredients);
+app.use('/ingredientsByName', getIngredientsByName);
+
 app.use('/addRecipe', addRecipe);
 app.use('/editRecipe', editRecipe);
 app.use('/removeRecipe', removeRecipe);

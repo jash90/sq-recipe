@@ -20,8 +20,7 @@ const RecipeIngredient = db.define(
   },
   {
     freezeTableName:true,
-    timestamps: false,
-    tableName: 'recipeIngredient'
+    timestamps: false
   }
 );
 Recipe.belongsToMany(Ingredient, {

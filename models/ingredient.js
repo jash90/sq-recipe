@@ -13,8 +13,7 @@ const Ingredient = db.define(
     }
   },
   {
-    timestamps: false,
-    tableName: 'ingredient'
+    timestamps: false
   }
 );
 

@@ -8,7 +8,10 @@ router.post('/', function (req, res, next) {
             id
         }})
         .then(data => {
-            res.json(data);
+            res.json({delete: true, id: id});
+        })
+        .catch(error => {
+            res.json({delete: false, id: id, error: error});
         })
 });
 

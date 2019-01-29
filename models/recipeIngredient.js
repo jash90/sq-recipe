@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const Recipe = require('./recipe');
 const Ingredient = require('./ingredient');
 const RecipeIngredient = db.define(
-  'recipeIngredient',
+  'recipeIngredients',
   {
     idRecipe: {
       type: Sequelize.INTEGER

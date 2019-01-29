@@ -12,6 +12,8 @@ router.post('/', function (req, res, next) {
         }
     }).then(data => {
         res.json(data);
+    }).catch(error => {
+        res.json({error: error});
     })
 });
 

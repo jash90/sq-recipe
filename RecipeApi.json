@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2019-01-30T21:43:56.871Z",
+	"__export_date": "2019-01-30T22:14:21.456Z",
 	"__export_source": "insomnia.desktop.app:v6.3.2",
 	"resources": [
 		{
@@ -211,18 +211,12 @@
 					"id": "pair_aa2744655460468091abc865d4ab34b1",
 					"name": "Content-Type",
 					"value": "application/json"
-				},
-				{
-					"disabled": true,
-					"id": "pair_a741dd756f06436e82e70e7be3a736a6",
-					"name": "token",
-					"value": ""
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1545573246196,
 			"method": "POST",
-			"modified": 1548880592836,
+			"modified": 1548885883489,
 			"name": "login",
 			"parameters": [
 				{
@@ -265,7 +259,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1545505252274,
 			"method": "PUT",
-			"modified": 1548882476967,
+			"modified": 1548885907245,
 			"name": "addRecipe",
 			"parameters": [],
 			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
@@ -355,18 +349,10 @@
 		{
 			"_id": "req_11021f98dee44da5b00ea97f4fac27b9",
 			"authentication": {},
-			"body": {
-				"mimeType": "application/json",
-				"text": "{\n\n}"
-			},
+			"body": {},
 			"created": 1548683784537,
 			"description": "",
 			"headers": [
-				{
-					"id": "pair_3f2a4b5bb8624a7da645fa62a8be367c",
-					"name": "Content-Type",
-					"value": "application/json"
-				},
 				{
 					"id": "pair_f5cd5fcf82f344cbb7f4acc07777aad0",
 					"name": "",
@@ -376,7 +362,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1548683784537,
 			"method": "GET",
-			"modified": 1548881405830,
+			"modified": 1548886441474,
 			"name": "recipes",
 			"parameters": [],
 			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",

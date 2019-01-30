@@ -21,25 +21,32 @@ router.post('/', async(req, res, next) => {
         transaction = await db.transaction();
 
         for (let x = 0; x < ingredients.length; x++) {
-            const i = ingredients[x];
-            await Ingredient.findOrCreate({
-                where: {
-                    [Op.or]: [
-                        {
-                            name: i.id
-                        }, {
-                            id: i.idIngredient
-                        }
-                    ]
-                },
-                transaction
-            }).spread((ingredient, created) => {
-                ingredientsRQ.push(ingredient.dataValues);
-            });
+            let {name, idIngredient} = ingredients[x];
+            if (name === undefined) {
+                await Ingredient.findOne({
+                    where: {
+                        id: idIngredient
+                    },
+                    transaction
+                }).then((ingredient) => {
+                    ingredientsRQ.push(ingredient.dataValues);
+                });
+            }
+            if (idIngredient === undefined) {
+                await Ingredient.create({
+                    name: name
+                }, {transaction}).then((ingredient) => {
+                    ingredientsRQ.push(ingredient.dataValues);
+                });
+            }
         }
+        await console.log(ingredientsRQ);
         await Recipe
             .findByPk(id, {transaction})
             .then(data => {
+                if (data === null) {
+                    res.json({messenge: "Recipe not exists."})
+                }
                 data
                     .update({name: name, content: content, preparationTime: preparationTime})
                     .then(data => {
@@ -56,6 +63,7 @@ router.post('/', async(req, res, next) => {
             .then(data => {
                 oldRecipeIngredients = data.map(ri => {
                     const item = ri.dataValues;
+                    recipeIngredients.push(item);
                     return {id: item.idIngredient};
                 });
             });
@@ -65,38 +73,39 @@ router.post('/', async(req, res, next) => {
         });
 
         const deleteIngredients = _.differenceBy(oldRecipeIngredients, newIngredients, 'id');
-        deleteIngredients.forEach(element => {
-            RecipeIngredient.destroy({
+        for (let x = 0; x < deleteIngredients.length; x++) {
+            const element = deleteIngredients[x];
+            const index = _.findIndex(recipeIngredients, {'idIngredient': element.id});
+            recipeIngredients.splice(index, 1);
+            await RecipeIngredient.destroy({
                 where: {
                     idIngredient: element.id,
                     idRecipe: recipe.id
                 }
             });
-        });
-        for (let x = 0; x < ingredientsRQ.length; x++) {
-            const irq = ingredientsRQ[x];
-            const i = ingredients[x];
-            await RecipeIngredient.findOrCreate({
-                where: {
+        }
+        const addIngredients = _.differenceBy(newIngredients, oldRecipeIngredients, 'id');
+        for (let x = 0; x < addIngredients.length; x++) {
+            const element = addIngredients[x];
+            const index = _.findIndex(ingredientsRQ, {'id': element.id});
+            if (index > -1) {
+                const irq = ingredientsRQ[index];
+                const i = ingredients[index];
+                await RecipeIngredient.create({
                     idRecipe: recipe.id,
                     idIngredient: irq.id,
                     count: i.count,
                     unit: i.unit
-                },
-                transaction
-            }).then(data => {
-                data.forEach(ri => {
-                    recipeIngredients.push(ri.dataValues);
+                }, {transaction}).then(data => {
+                    recipeIngredients.push(data.dataValues);
                 });
-
-            });
+            }
         }
         res.json({recipe, recipeIngredients});
         await transaction.commit();
     } catch (err) {
-        // Rollback transaction if any errors were encountered
         console.log(err);
-        res.json({});
+        res.json({err});
         await transaction.rollback();
     }
 

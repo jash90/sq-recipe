@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const {Ingredient, Recipe, RecipeIngredient} = require("../../models");
+const {Op} = require("sequelize");
 var db = require('../../db');
 
 router.post('/', async(req, res, next) => {
@@ -18,15 +19,28 @@ router.post('/', async(req, res, next) => {
     transaction = await db.transaction();
 
     for (let x = 0; x < ingredients.length; x++) {
-      const i = ingredients[x];
+      let {name, idIngredient} = ingredients[x];
+      if (name === undefined) {
+        name = "";
+      }
+      if (idIngredient === undefined) {
+        idIngredient = 0;
+      }
       await Ingredient.findOrCreate({
         where: {
-          name: i.name
+          [Op.or]: [
+            {
+              name: name
+            }, {
+              id: idIngredient
+            }
+          ]
         },
         transaction
       }).spread((ingredient, created) => {
+        console.log(ingredient.dataValues);
         ingredientsRQ.push(ingredient.dataValues);
-      });
+      })
     }
     await Recipe.create({
       name,
@@ -49,15 +63,10 @@ router.post('/', async(req, res, next) => {
         recipeIngredients.push(data.dataValues);
       });
     }
-    console.log(recipe);
-    console.log(recipeIngredients);
-    console.log(ingredientsRQ);
-    // commit
+
     res.json({recipe, recipeIngredients});
     await transaction.commit();
   } catch (err) {
-    // Rollback transaction if any errors were encountered
-    console.log(err);
     res.json({err});
     await transaction.rollback();
   }

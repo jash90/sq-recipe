@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2019-01-30T10:30:07.723Z",
+	"__export_date": "2019-01-30T17:35:44.775Z",
 	"__export_source": "insomnia.desktop.app:v6.3.2",
 	"resources": [
 		{
@@ -342,7 +342,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\n}"
+				"text": "{\n\n}"
 			},
 			"created": 1548683784537,
 			"description": "",
@@ -351,12 +351,17 @@
 					"id": "pair_3f2a4b5bb8624a7da645fa62a8be367c",
 					"name": "Content-Type",
 					"value": "application/json"
+				},
+				{
+					"id": "pair_f5cd5fcf82f344cbb7f4acc07777aad0",
+					"name": "",
+					"value": ""
 				}
 			],
 			"isPrivate": false,
 			"metaSortKey": -1548683784537,
 			"method": "POST",
-			"modified": 1548684117216,
+			"modified": 1548869514021,
 			"name": "recipes",
 			"parameters": [],
 			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
@@ -367,6 +372,38 @@
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
 			"url": "{{ api  }}/recipes",
+			"_type": "request"
+		},
+		{
+			"_id": "req_ed9ffbd8da1a492f97fd0b1474eece31",
+			"authentication": {},
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"idIngredients\":[38]\n}"
+			},
+			"created": 1548869462492,
+			"description": "",
+			"headers": [
+				{
+					"id": "pair_4c5c7f066bca431c883e7ef57284efe9",
+					"name": "Content-Type",
+					"value": "application/json"
+				}
+			],
+			"isPrivate": false,
+			"metaSortKey": -1548869462492,
+			"method": "POST",
+			"modified": 1548869507720,
+			"name": "getByIngredients",
+			"parameters": [],
+			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingMaxTimelineDataSize": 1000,
+			"settingRebuildPath": true,
+			"settingSendCookies": true,
+			"settingStoreCookies": true,
+			"url": "{{ api  }}/getByIngredients",
 			"_type": "request"
 		}
 	]

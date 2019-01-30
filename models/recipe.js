@@ -1,8 +1,8 @@
-const db = require('../db');
-const Sequelize = require('sequelize');
+const db = require("../db");
+const Sequelize = require("sequelize");
 const User = require("./user");
 const Recipe = db.define(
-  'recipes',
+  "recipes",
   {
     id: {
       type: Sequelize.INTEGER,
@@ -27,6 +27,6 @@ const Recipe = db.define(
     timestamps: false
   }
 );
-User.hasMany(Recipe, {foreignKey: 'idUser', sourceKey: 'id'});
-Recipe.belongsTo(User, {foreignKey: 'idUser', targetKey: 'id'});
+User.hasMany(Recipe, { foreignKey: "idUser", sourceKey: "id" });
+Recipe.belongsTo(User, { foreignKey: "idUser", targetKey: "id" });
 module.exports = Recipe;

@@ -1,4 +1,3 @@
-
 module.exports = {
   OK: {
     code: 200,
@@ -20,9 +19,9 @@ module.exports = {
     code: 402,
     message: "LoginOrPasswordIncorrect"
   },
-  DeniedLogin:{
-    code:403,
-    message:"DeniedLogin"
+  DeniedLogin: {
+    code: 403,
+    message: "DeniedLogin"
   },
   DeniedRegister: {
     code: 403,

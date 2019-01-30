@@ -1,10 +1,10 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const {Ingredient, Recipe, RecipeIngredient} = require("../../models");
-const {Op} = require("sequelize");
-var db = require('../../db');
+const { Ingredient, Recipe, RecipeIngredient } = require("../../models");
+const { Op } = require("sequelize");
+var db = require("../../db");
 
-router.post('/', async(req, res, next) => {
+router.post("/", async (req, res, next) => {
   const ingredients = req.body.ingredients;
   const name = req.body.name;
   const content = req.body.content;
@@ -15,11 +15,10 @@ router.post('/', async(req, res, next) => {
   let transaction;
   let recipe;
   try {
-
     transaction = await db.transaction();
 
     for (let x = 0; x < ingredients.length; x++) {
-      let {name, idIngredient} = ingredients[x];
+      let { name, idIngredient } = ingredients[x];
       if (name === undefined) {
         name = "";
       }
@@ -31,46 +30,51 @@ router.post('/', async(req, res, next) => {
           [Op.or]: [
             {
               name: name
-            }, {
+            },
+            {
               id: idIngredient
             }
           ]
         },
         transaction
       }).spread((ingredient, created) => {
-        console.log(ingredient.dataValues);
         ingredientsRQ.push(ingredient.dataValues);
-      })
+      });
     }
-    await Recipe.create({
-      name,
-      content,
-      preparationTime,
-      idUser
-    }, {transaction}).then(data => {
+    await Recipe.create(
+      {
+        name,
+        content,
+        preparationTime,
+        idUser
+      },
+      { transaction }
+    ).then(data => {
       recipe = data.dataValues;
     });
 
     for (let x = 0; x < ingredientsRQ.length; x++) {
       const irq = ingredientsRQ[x];
       const i = ingredients[x];
-      await RecipeIngredient.create({
-        idRecipe: recipe.id,
-        idIngredient: irq.id,
-        count: i.count,
-        unit: i.unit
-      }, {transaction}).then(data => {
+      await RecipeIngredient.create(
+        {
+          idRecipe: recipe.id,
+          idIngredient: irq.id,
+          count: i.count,
+          unit: i.unit
+        },
+        { transaction }
+      ).then(data => {
         recipeIngredients.push(data.dataValues);
       });
     }
 
-    res.json({recipe, recipeIngredients});
+    res.json({ recipe, recipeIngredients });
     await transaction.commit();
   } catch (err) {
-    res.json({err});
+    res.json({ err });
     await transaction.rollback();
   }
-
 });
 
 module.exports = router;

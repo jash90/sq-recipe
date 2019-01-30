@@ -1,21 +1,36 @@
 var express = require("express");
 var router = express.Router();
-const { Ingredient, Recipe, RecipeIngredient } = require("../../models");
+const { Ingredient, Recipe, RecipeIngredient, User } = require("../../models");
 const { Op } = require("sequelize");
+const { OK, Error, Unauthorized } = require("../../status");
 var db = require("../../db");
 
-router.post("/", async (req, res, next) => {
+router.put("/", async (req, res, next) => {
   const ingredients = req.body.ingredients;
   const name = req.body.name;
   const content = req.body.content;
   const preparationTime = req.body.preparationTime;
-  const idUser = 3;
+  let idUser = 0;
+  const token = req.headers.token;
   var ingredientsRQ = [];
   let recipeIngredients = [];
   let transaction;
   let recipe;
   try {
     transaction = await db.transaction();
+
+    await User.findOne({
+      where: { accessToken: token }
+    })
+      .then(data => {
+        if (!data) {
+          res.json({ Unauthorized });
+        }
+        idUser = data.dataValues.id;
+      })
+      .catch(error => {
+        res.json({ DeniedLogin, error });
+      });
 
     for (let x = 0; x < ingredients.length; x++) {
       let { name, idIngredient } = ingredients[x];

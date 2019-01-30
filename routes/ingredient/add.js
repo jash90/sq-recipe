@@ -1,16 +1,13 @@
 var express = require("express");
 var router = express.Router();
 const { Ingredient } = require("../../models");
-/* GET home page. */
-router.post("/", function(req, res, next) {
+router.put("/", function(req, res, next) {
   const name = req.body.name;
-  Ingredient.findOrCreate({
-    where: {
-      name
-    }
+  Ingredient.create({
+    name: name
   })
     .then(data => {
-      res.json(data);
+      res.json(data.dataValues);
     })
     .catch(error => {
       res.json({ error: error });

@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const { Recipe, RecipeIngredient, Ingredient } = require("../../models");
 const _ = require("lodash");
-router.post("/", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   let recipes = [];
   let ingredients = [];
   try {

@@ -10,11 +10,11 @@ router.post("/", function(req, res) {
   var pass = req.body.password;
 
   pass = crypto.SHA256(pass).toString(crypto.enc.Hex);
-
   User.create({ login: user, password: pass })
     .then(data => {
+      const {id, login} = data.dataValues;
       res.json({
-        data: data,
+        data: {id, login},
         status: status.OK.code,
         message: status.OK.message
       });

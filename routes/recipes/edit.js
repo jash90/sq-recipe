@@ -1,23 +1,65 @@
 var express = require("express");
 var router = express.Router();
-const { Ingredient, Recipe, RecipeIngredient } = require("../../models");
+const { Ingredient, Recipe, RecipeIngredient, User } = require("../../models");
 const db = require("../../db");
 const { Op } = require("sequelize");
 const _ = require("lodash");
-router.post("/", async (req, res, next) => {
+const { OK, Error, Unauthorized } = require("../../status");
+
+router.put("/", async (req, res, next) => {
   const ingredients = req.body.ingredients;
   const id = req.body.id;
   const name = req.body.name;
   const content = req.body.content;
   const preparationTime = req.body.preparationTime;
-  const idUser = 3;
   var ingredientsRQ = [];
   let recipeIngredients = [];
   let oldRecipeIngredients = [];
+  const token = req.headers.token;
   let transaction;
   let recipe;
+  let user;
+
   try {
     transaction = await db.transaction();
+
+    await User.findOne(
+      {
+        where: { accessToken: token }
+      },
+      { transaction }
+    )
+      .then(data => {
+        if (!data) {
+          res.json({ Unauthorized });
+        }
+        user = data.dataValues;
+      })
+      .catch(error => {
+        res.json(error);
+      });
+
+    await Recipe.findByPk(id, {
+      transaction
+    }).then(data => {
+      if (!data) {
+        throw {
+          messenge: "Recipe not exists."
+        };
+      }
+      if (data.dataValues.idUser !== user.id) {
+        throw Unauthorized;
+      }
+      data
+        .update({
+          name: name,
+          content: content,
+          preparationTime: preparationTime
+        })
+        .then(data => {
+          recipe = data.dataValues;
+        });
+    });
 
     for (let x = 0; x < ingredients.length; x++) {
       let { name, idIngredient } = ingredients[x];
@@ -32,31 +74,13 @@ router.post("/", async (req, res, next) => {
         });
       }
       if (idIngredient === undefined) {
-        await Ingredient.create(
-          {
-            name: name
-          },
-          { transaction }
-        ).then(ingredient => {
-          ingredientsRQ.push(ingredient.dataValues);
-        });
+        await Ingredient.create({ name: name }, { transaction }).then(
+          ingredient => {
+            ingredientsRQ.push(ingredient.dataValues);
+          }
+        );
       }
     }
-
-    await Recipe.findByPk(id, { transaction }).then(data => {
-      if (data === null) {
-        res.json({ messenge: "Recipe not exists." });
-      }
-      data
-        .update({
-          name: name,
-          content: content,
-          preparationTime: preparationTime
-        })
-        .then(data => {
-          recipe = data.dataValues;
-        });
-    });
 
     await RecipeIngredient.findAll({
       where: {
@@ -66,12 +90,16 @@ router.post("/", async (req, res, next) => {
       oldRecipeIngredients = data.map(ri => {
         const item = ri.dataValues;
         recipeIngredients.push(item);
-        return { id: item.idIngredient };
+        return {
+          id: item.idIngredient
+        };
       });
     });
 
     const newIngredients = ingredientsRQ.map(r => {
-      return { id: r.id };
+      return {
+        id: r.id
+      };
     });
 
     const deleteIngredients = _.differenceBy(
@@ -99,7 +127,9 @@ router.post("/", async (req, res, next) => {
     );
     for (let x = 0; x < addIngredients.length; x++) {
       const element = addIngredients[x];
-      const index = _.findIndex(ingredientsRQ, { id: element.id });
+      const index = _.findIndex(ingredientsRQ, {
+        id: element.id
+      });
       if (index > -1) {
         const irq = ingredientsRQ[index];
         const i = ingredients[index];
@@ -116,10 +146,15 @@ router.post("/", async (req, res, next) => {
         });
       }
     }
-    res.json({ recipe, recipeIngredients });
+    res.json({
+      recipe,
+      recipeIngredients
+    });
     await transaction.commit();
   } catch (err) {
-    res.json({ err });
+    res.json({
+      err
+    });
     await transaction.rollback();
   }
 });

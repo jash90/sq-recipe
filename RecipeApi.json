@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2019-01-28T15:02:50.620Z",
+	"__export_date": "2019-01-30T10:30:07.723Z",
 	"__export_source": "insomnia.desktop.app:v6.3.2",
 	"resources": [
 		{
@@ -246,7 +246,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"name\": \"my\",\n\t\t\t\"unit\": \"szt.\",\n\t\t\t\"count\": 10\n\t\t},\n\t\t{\n\t\t\t\"name\": \"mydło\",\n\t\t\t\"unit\": \"dag\",\n\t\t\t\"count\": 10\n\t\t}\n\t],\n\t\"name\":\"skdgfkjhsdfhksjdh\",\n\t\"content\":\"test\",\n\t\"preparationTime\":30\n\t\n}"
+				"text": "{\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"idIngredient\":14,\n\t\t\t\"unit\": \"szt.\",\n\t\t\t\"count\": 10\n\t\t},\n\t\t{\n\t\t\t\"name\": \"ser\",\n\t\t\t\"unit\": \"dag\",\n\t\t\t\"count\": 10\n\t\t}\n\t],\n\t\"name\":\"test\",\n\t\"content\":\"test\",\n\t\"preparationTime\":30\n\t\n}"
 			},
 			"created": 1545505252274,
 			"description": "",
@@ -260,7 +260,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1545505252274,
 			"method": "POST",
-			"modified": 1548683498514,
+			"modified": 1548808137984,
 			"name": "addRecipe",
 			"parameters": [],
 			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
@@ -270,7 +270,7 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "{{ api  }}/",
+			"url": "{{ api  }}/addRecipe",
 			"_type": "request"
 		},
 		{
@@ -278,7 +278,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"name\": \"my\",\n\t\t\t\"unit\": \"szt.\",\n\t\t\t\"count\": 10\n\t\t},\n\t\t{\n\t\t\t\"name\": \"mydło\",\n\t\t\t\"unit\": \"dag\",\n\t\t\t\"count\": 10\n\t\t}\n\t],\n\t\"name\":\"skdgfkjhsdfhksjdh\",\n\t\"content\":\"test\",\n\t\"preparationTime\":30\n\t\n}"
+				"text": "{\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"idRecipe\": 36,\n\t\t\t\"idIngredient\": 27,\n\t\t\t\"count\": 10,\n\t\t\t\"unit\": \"szt.\"\n\t\t},\n\t\t\t{\n\t\t\t\"name\":\"groszek\",\n\t\t\t\"count\": 10,\n\t\t\t\"unit\": \"szt.\"\n\t\t}\n\t],\n\t\"name\": \"skdgfkjhsdfhksjdh\",\n\t\"content\": \"test\",\n\t\"preparationTime\": 36,\n\t\"id\":37\n}"
 			},
 			"created": 1548683529361,
 			"description": "",
@@ -292,7 +292,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1548683529361,
 			"method": "POST",
-			"modified": 1548684030232,
+			"modified": 1548808117651,
 			"name": "editRecipe",
 			"parameters": [],
 			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
@@ -310,7 +310,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\n}"
+				"text": "{\n\t\"id\":0\n}"
 			},
 			"created": 1548683585628,
 			"description": "",
@@ -324,7 +324,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1548683585628,
 			"method": "POST",
-			"modified": 1548684089042,
+			"modified": 1548785084240,
 			"name": "removeRecipe",
 			"parameters": [],
 			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",

@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var {addIngredient, getIngredients, getIngredientsByName} = require('./routes/ingredient');
-var {addRecipe, editRecipe, removeRecipe, getRecipes} = require('./routes/recipes');
+var {addRecipe, editRecipe, removeRecipe, getRecipes, getByIngredients} = require('./routes/recipes');
 var index = require("./routes/index");
 
 var app = express();
@@ -30,6 +30,7 @@ app.use('/addRecipe', addRecipe);
 app.use('/editRecipe', editRecipe);
 app.use('/removeRecipe', removeRecipe);
 app.use('/recipes', getRecipes);
+app.use('/getByIngredients', getByIngredients);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -18,28 +18,23 @@ router.put("/", async (req, res, next) => {
     transaction = await db.transaction();
 
     for (let x = 0; x < ingredients.length; x++) {
-      let { name, idIngredient } = ingredients[x];
       if (name === undefined) {
-        name = "";
+        await Ingredient.findOne({
+          where: {
+            id: idIngredient
+          },
+          transaction
+        }).then(ingredient => {
+          ingredientsRQ.push(ingredient.dataValues);
+        });
       }
       if (idIngredient === undefined) {
-        idIngredient = 0;
+        await Ingredient.create({ name: name }, { transaction }).then(
+          ingredient => {
+            ingredientsRQ.push(ingredient.dataValues);
+          }
+        );
       }
-      await Ingredient.findOrCreate({
-        where: {
-          [Op.or]: [
-            {
-              name: name
-            },
-            {
-              id: idIngredient
-            }
-          ]
-        },
-        transaction
-      }).spread((ingredient, created) => {
-        ingredientsRQ.push(ingredient.dataValues);
-      });
     }
     await Recipe.create(
       {

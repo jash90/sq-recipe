@@ -7,8 +7,7 @@ router.delete("/", async (req, res, next) => {
 
   Recipe.destroy({
     where: {
-      id: id,
-      idUser: idUser
+      id: id
     }
   })
     .then(data => {

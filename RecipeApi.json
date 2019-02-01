@@ -1,7 +1,7 @@
 {
 	"_type": "export",
 	"__export_format": 3,
-	"__export_date": "2019-02-01T19:57:06.276Z",
+	"__export_date": "2019-02-01T23:29:04.417Z",
 	"__export_source": "insomnia.desktop.app:v6.3.2",
 	"resources": [
 		{
@@ -127,7 +127,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"ingredients\": [\n\t {\n      \"idRecipe\": 44,\n      \"idIngredient\": 48,\n      \"count\": 150,\n      \"unit\": \"g\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 49,\n      \"count\": 150,\n      \"unit\": \"g\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 50,\n      \"count\": 150,\n      \"unit\": \"g\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 51,\n      \"count\": 2,\n      \"unit\": \"łyżeczki\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 52,\n      \"count\": 5,\n      \"unit\": \"szt.\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 53,\n      \"count\": 1,\n      \"unit\": \"szt.\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 54,\n      \"count\": 600,\n      \"unit\": \"ml\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 55,\n      \"count\": 10,\n      \"unit\": \"g\"\n    }\n\t],\n\t\"name\": \"Magiczne ciasto2dgfg\",\n\t\"content\": \"fghfgh\",\n\t\"preparationTime\": 30\n}"
+				"text": "{\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"count\": 2,\n\t\t\t\"unit\": \"szt.\",\n\t\t\t\"idIngredient\": 8\n\t\t},\n\t\t{\n\t\t\t\"count\": 1,\n\t\t\t\"unit\": \"szklanka\",\n\t\t\t\"idIngredient\": 10\n\t\t},\n\t\t{\n\t\t\t\"count\": 1,\n\t\t\t\"unit\": \"łyżeczka\",\n\t\t\t\"name\": \"proszek do pieczenia\"\n\t\t},\n\t\t{\n\t\t\t\"count\": 2,\n\t\t\t\"unit\": \"łyżeczki\",\n\t\t\t\"idIngredient\": 13\n\t\t},\n\t\t{\n\t\t\t\"count\": 1,\n\t\t\t\"unit\": \"opak.\",\n\t\t\t\"name\": \"sos malinowy\"\n\t\t},\n\t\t{\n\t\t\t\"count\": 1,\n\t\t\t\"unit\": \"opak.\",\n\t\t\t\"name\": \"sezonowe owoce\"\n\t\t},\n\t\t{\n\t\t\t\"count\": 100,\n\t\t\t\"unit\": \"g\",\n\t\t\t\"idIngredient\": 2\n\t\t},\n\t\t{\n\t\t\t\"count\": 1,\n\t\t\t\"unit\": \"opak.\",\n\t\t\t\"name\": \"lody truskawkowe\"\n\t\t}\n\t],\n\t\"name\": \"Cytrynowe magdalenki z lodami\",\n\t\"content\": \"Przygotowanie\\nKrok 1\\nKasię rozpuść w rondelku. Jajka ubij z cukrem na puch. Dodaj mąkę wymieszaną z proszkiem do pieczenia i sok z cytryny. Wszystko wymieszaj mikserem. Na koniec dodaj przestudzoną Kasię, wymieszaj.\\nKrok 2\\nMetalową foremkę do magdalenek o wielkości 7cm wysmaruj Kasią i obsyp mąką. Do każdego wgłębienia włóż łyżkę ciasta. Odstaw na 10 minut.\\nKrok 3\\nW tym czasie nagrzej piekarnik do 180st.C Wstaw foremkę z ciasteczkami do piekarnika i piecz 10 minut.\\nKrok 4\\nPrzygotuj małe miseczki. Na dno każdej wlej łyżkę sosu malinowego, włóż dwie kulki lodów i pokrojone owoce.\\nKrok 5\\nPodawaj z magdalenkami.\\n\",\n\t\"preparationTime\": 15\n}"
 			},
 			"created": 1545505252274,
 			"description": "",
@@ -146,7 +146,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1545505252274,
 			"method": "PUT",
-			"modified": 1549045588854,
+			"modified": 1549063663729,
 			"name": "addRecipe",
 			"parameters": [],
 			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
@@ -156,7 +156,7 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "{{ api  }}/addRecipe",
+			"url": "{{ api }}/addRecipe",
 			"_type": "request"
 		},
 		{
@@ -164,7 +164,7 @@
 			"authentication": {},
 			"body": {
 				"mimeType": "application/json",
-				"text": "{\n\t\"ingredients\": [\n\t {\n      \"idRecipe\": 44,\n      \"idIngredient\": 48,\n      \"count\": 150,\n      \"unit\": \"g\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 49,\n      \"count\": 150,\n      \"unit\": \"g\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 50,\n      \"count\": 150,\n      \"unit\": \"g\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 51,\n      \"count\": 2,\n      \"unit\": \"łyżeczki\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 52,\n      \"count\": 5,\n      \"unit\": \"szt.\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 53,\n      \"count\": 1,\n      \"unit\": \"szt.\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 54,\n      \"count\": 600,\n      \"unit\": \"ml\"\n    },\n    {\n      \"idRecipe\": 44,\n      \"idIngredient\": 55,\n      \"count\": 10,\n      \"unit\": \"g\"\n    }\n\t],\n\t\"id\":44,\n\t\"name\": \"Magiczne ciasto\",\n\t\"content\": \"Przygotowanie\\nKrok 1\\nKasię rozpuścić i wystudzić. Żółtka oddzielić od białek i utrzeć z cukrem pudrem i cukrem wanilinowym na krem. Dodać przestudzoną Kasię.\\nKrok 2\\nNastępnie dodawać partiami przesianą mąkę i mleko, wszystko razem miksując.\\nKrok 3\\nBiałka ubić na sztywną pianę. Pod koniec ubijania dodać sok z cytryny.\\nKrok 4\\nUbitą pianę dodać do masy żółtkowej i delikatnie wymieszać łyżką.\\nKrok 5\\nCiasto przełożyć do szczelnej formy o wymiarach 17 x 27 cm i piec w 160 st. C (opcja piekarnika góra-dół) około 45 minut. Pod koniec pieczenia należy ciasto obserwować, jeśli zacznie pękać należy zakończyć pieczenie.\\nKrok 6\\nCiasto wyjąć z piekarnika, a gdy wystygnie wstawić na kilka godzin do lodówki. Przed podaniem oprószyć cukrem pudrem.\\n\",\n\t\"preparationTime\": 30\n}"
+				"text": "{\n\t\"id\": 2,\n\t\"name\": \"Magiczne ciasto\",\n\t\"content\": \"\\nPrzygotowanie\\nKrok 1\\nKasię rozpuścić i wystudzić. Żółtka oddzielić od białek i utrzeć z cukrem pudrem i cukrem wanilinowym na krem. Dodać przestudzoną Kasię.\\nKrok 2\\nNastępnie dodawać partiami przesianą mąkę i mleko, wszystko razem miksując.\\nKrok 3\\nBiałka ubić na sztywną pianę. Pod koniec ubijania dodać sok z cytryny.\\nKrok 4\\nUbitą pianę dodać do masy żółtkowej i delikatnie wymieszać łyżką.\\nKrok 5\\nCiasto przełożyć do szczelnej formy o wymiarach 17 x 27 cm i piec w 160 st. C (opcja piekarnika góra-dół) około 45 minut. Pod koniec pieczenia należy ciasto obserwować, jeśli zacznie pękać należy zakończyć pieczenie.\\nKrok 6\\nCiasto wyjąć z piekarnika, a gdy wystygnie wstawić na kilka godzin do lodówki. Przed podaniem oprószyć cukrem pudrem.\\n\",\n\t\"preparationTime\": 10,\n\t\"ingredients\": [\n\t\t{\n\t\t\t\"idRecipe\": 2,\n\t\t\t\"idIngredient\": 10,\n\t\t\t\"count\": 150,\n\t\t\t\"unit\": \"g\"\n\t\t},\n\t\t{\n\t\t\t\"idRecipe\": 2,\n\t\t\t\"idIngredient\": 2,\n\t\t\t\"count\": 150,\n\t\t\t\"unit\": \"g\"\n\t\t},\n\t\t{\n\t\t\t\"idRecipe\": 2,\n\t\t\t\"idIngredient\": 11,\n\t\t\t\"count\": 150,\n\t\t\t\"unit\": \"g\"\n\t\t},\n\t\t{\n\t\t\t\"idRecipe\": 2,\n\t\t\t\"idIngredient\": 12,\n\t\t\t\"count\": 2,\n\t\t\t\"unit\": \"łyżeczki\"\n\t\t},\n\t\t{\n\t\t\t\"idRecipe\": 2,\n\t\t\t\"idIngredient\": 8,\n\t\t\t\"count\": 5,\n\t\t\t\"unit\": \"szt.\"\n\t\t},\n\t\t{\n\t\t\t\"idRecipe\": 2,\n\t\t\t\"idIngredient\": 13,\n\t\t\t\"count\": 1,\n\t\t\t\"unit\": \"szt.\"\n\t\t},\n\t\t{\n\t\t\t\"idRecipe\": 2,\n\t\t\t\"idIngredient\": 14,\n\t\t\t\"count\": 600,\n\t\t\t\"unit\": \"ml\"\n\t\t},\n\t\t{\n\t\t\t\"idRecipe\": 2,\n\t\t\t\"idIngredient\": 15,\n\t\t\t\"count\": 1,\n\t\t\t\"unit\": \"szt.\"\n\t\t}\n\t]\n}"
 			},
 			"created": 1548683529361,
 			"description": "",
@@ -183,7 +183,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1548683529361,
 			"method": "PUT",
-			"modified": 1549030557806,
+			"modified": 1549062179470,
 			"name": "editRecipe",
 			"parameters": [],
 			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
@@ -220,7 +220,7 @@
 			"isPrivate": false,
 			"metaSortKey": -1548683585628,
 			"method": "DELETE",
-			"modified": 1549050991711,
+			"modified": 1549051204959,
 			"name": "removeRecipe",
 			"parameters": [],
 			"parentId": "fld_3c1be0177d6f4331874d5f2ac10b1fda",
@@ -230,7 +230,7 @@
 			"settingRebuildPath": true,
 			"settingSendCookies": true,
 			"settingStoreCookies": true,
-			"url": "{{ test }}/removeRecipe",
+			"url": "{{ api }}/removeRecipe",
 			"_type": "request"
 		},
 		{

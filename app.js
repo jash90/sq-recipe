@@ -5,7 +5,6 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var {
-  addIngredient,
   getIngredients,
   getIngredientsByName
 } = require("./routes/ingredient");
@@ -33,7 +32,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", index);
 
-app.use("/addIngredient", addIngredient);
 app.use("/ingredients", getIngredients);
 app.use("/ingredientsByName", getIngredientsByName);
 

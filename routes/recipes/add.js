@@ -18,6 +18,7 @@ router.put("/", async (req, res, next) => {
     transaction = await db.transaction();
 
     for (let x = 0; x < ingredients.length; x++) {
+      let { name, idIngredient } = ingredients[x];
       if (name === undefined) {
         await Ingredient.findOne({
           where: {

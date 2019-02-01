@@ -12,7 +12,7 @@ router.delete("/", async (req, res, next) => {
   })
     .then(data => {
       if (!data) {
-        res.json({ delete: false, id: id, Unauthorized });
+        res.json({ delete: false, id: id, OK });
       }
       res.json({ delete: true, id: id, OK });
     })

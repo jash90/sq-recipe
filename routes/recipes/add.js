@@ -1,8 +1,8 @@
 var express = require("express");
 var router = express.Router();
-const { Ingredient, Recipe, RecipeIngredient, User } = require("../../models");
+const { Ingredient, Recipe, RecipeIngredient } = require("../../models");
 const { Op } = require("sequelize");
-const { OK, Error, Unauthorized } = require("../../status");
+const { OK, Error } = require("../../status");
 var db = require("../../db");
 
 router.put("/", async (req, res, next) => {
@@ -10,27 +10,12 @@ router.put("/", async (req, res, next) => {
   const name = req.body.name;
   const content = req.body.content;
   const preparationTime = req.body.preparationTime;
-  let idUser = 0;
-  const token = req.headers.token;
   var ingredientsRQ = [];
   let recipeIngredients = [];
   let transaction;
   let recipe;
   try {
     transaction = await db.transaction();
-
-    await User.findOne({
-      where: { accessToken: token }
-    })
-      .then(data => {
-        if (!data) {
-          res.json({ Unauthorized });
-        }
-        idUser = data.dataValues.id;
-      })
-      .catch(error => {
-        res.json({ DeniedLogin, error });
-      });
 
     for (let x = 0; x < ingredients.length; x++) {
       let { name, idIngredient } = ingredients[x];
@@ -60,8 +45,7 @@ router.put("/", async (req, res, next) => {
       {
         name,
         content,
-        preparationTime,
-        idUser
+        preparationTime
       },
       { transaction }
     ).then(data => {
@@ -84,10 +68,10 @@ router.put("/", async (req, res, next) => {
       });
     }
 
-    res.json({ recipe, recipeIngredients });
+    res.json({ recipe, recipeIngredients, OK });
     await transaction.commit();
   } catch (err) {
-    res.json({ err });
+    res.json({ err, Error });
     await transaction.rollback();
   }
 });

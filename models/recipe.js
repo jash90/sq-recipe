@@ -1,6 +1,5 @@
 const db = require("../db");
 const Sequelize = require("sequelize");
-const User = require("./user");
 const Recipe = db.define(
   "recipes",
   {
@@ -19,14 +18,9 @@ const Recipe = db.define(
     preparationTime: {
       type: Sequelize.INTEGER
     },
-    idUser: {
-      type: Sequelize.INTEGER
-    }
   },
   {
     timestamps: false
   }
 );
-User.hasMany(Recipe, { foreignKey: "idUser", sourceKey: "id" });
-Recipe.belongsTo(User, { foreignKey: "idUser", targetKey: "id" });
 module.exports = Recipe;

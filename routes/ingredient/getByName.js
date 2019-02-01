@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const { Ingredient } = require("../../models");
 const { Op } = require("sequelize");
+const { OK, Error } = require("../../status");
 router.get("/", function(req, res, next) {
   const name = req.query.name;
   Ingredient.findAll({
@@ -12,10 +13,10 @@ router.get("/", function(req, res, next) {
     }
   })
     .then(data => {
-      res.json(data);
+      res.json({data, OK});
     })
     .catch(error => {
-      res.json({ error: error });
+      res.json({ error, Error });
     });
 });
 

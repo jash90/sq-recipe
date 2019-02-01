@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const { Recipe, RecipeIngredient, Ingredient } = require("../../models");
 const _ = require("lodash");
+const { OK, Error } = require("../../status");
 router.get("/", async (req, res, next) => {
   let recipes = [];
   let ingredients = [];
@@ -31,20 +32,14 @@ router.get("/", async (req, res, next) => {
       }).then(data => {
         data.forEach(async ri => {
           const recipeIngredient = ri.dataValues;
-          // let item = _.find(ingredients, {'id': recipeIngredient.idIngredient});
-          // item = item.dataValues;
-          // console.log(item);
-          // if (item) {
-          //     recipeIngredient.name = item.name;
-          // }
           element.ingredients.push(recipeIngredient);
         });
       });
     }
 
-    await res.json({ recipes });
+    await res.json({ recipes, OK });
   } catch (error) {
-    res.json({ error: error });
+    res.json({ error, Error });
   }
 });
 

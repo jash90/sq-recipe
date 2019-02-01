@@ -3,6 +3,7 @@ var router = express.Router();
 const { Recipe, RecipeIngredient, Ingredient } = require("../../models");
 const _ = require("lodash");
 const { Op } = require("sequelize");
+const { OK, Error } = require("../../status");
 router.post("/", async (req, res, next) => {
   let idIngredients = req.body.idIngredients;
   let recipes = [];
@@ -19,13 +20,13 @@ router.post("/", async (req, res, next) => {
       .then(data => {
         data.forEach(ri => {
           const recipeIngredient = ri.dataValues;
-          if (!recipesIds.includes(recipeIngredient.id)) {
+          if (!recipesIds.includes(recipeIngredient.idRecipe)) {
             recipesIds.push(recipeIngredient.idRecipe);
           }
         });
       })
       .catch(error => {
-        res.json({ error: error });
+        res.json({ error, Error });
       });
     if (recipesIds.length > 0) {
       await Ingredient.findAll()
@@ -33,13 +34,13 @@ router.post("/", async (req, res, next) => {
           ingredients = data;
         })
         .catch(error => {
-          res.json({ error: error });
+          res.json({ error, Error});
         });
 
       for (let index = 0; index < recipesIds.length; index++) {
         const element = recipesIds[index];
         let recipe;
-        await Recipe.findOne({ id: element }).then(data => {
+        await Recipe.findOne({where:{ id: element} }).then(data => {
           recipe = data.dataValues;
           recipe.ingredients = [];
         });
@@ -51,9 +52,13 @@ router.post("/", async (req, res, next) => {
         }).then(data => {
           data.forEach(async ri => {
             const recipeIngredient = ri.dataValues;
-            // let item = _.find(ingredients, {'id': recipeIngredient.idIngredient}); item =
-            // item.dataValues; console.log(item); if (item) {     recipeIngredient.name =
-            // item.name; }
+            let item = _.find(ingredients, {
+              id: recipeIngredient.idIngredient
+            });
+            item = item.dataValues;
+            if (item) {
+              recipeIngredient.name = item.name;
+            }
             recipe.ingredients.push(recipeIngredient);
           });
         });
@@ -61,9 +66,9 @@ router.post("/", async (req, res, next) => {
       }
     }
 
-    await res.json({ recipes });
+    await res.json({ recipes, OK });
   } catch (error) {
-    res.json({ error: error });
+    res.json({ error, Error });
   }
 });
 

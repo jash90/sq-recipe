@@ -1,10 +1,9 @@
 var express = require("express");
 var router = express.Router();
-const { Ingredient, Recipe, RecipeIngredient, User } = require("../../models");
+const { Ingredient, Recipe, RecipeIngredient } = require("../../models");
 const db = require("../../db");
-const { Op } = require("sequelize");
 const _ = require("lodash");
-const { OK, Error, Unauthorized } = require("../../status");
+const { OK, Error } = require("../../status");
 
 router.put("/", async (req, res, next) => {
   const ingredients = req.body.ingredients;
@@ -15,29 +14,12 @@ router.put("/", async (req, res, next) => {
   var ingredientsRQ = [];
   let recipeIngredients = [];
   let oldRecipeIngredients = [];
-  const token = req.headers.token;
   let transaction;
   let recipe;
-  let user;
 
   try {
     transaction = await db.transaction();
 
-    await User.findOne(
-      {
-        where: { accessToken: token }
-      },
-      { transaction }
-    )
-      .then(data => {
-        if (!data) {
-          res.json({ Unauthorized });
-        }
-        user = data.dataValues;
-      })
-      .catch(error => {
-        res.json(error);
-      });
 
     await Recipe.findByPk(id, {
       transaction
@@ -46,9 +28,6 @@ router.put("/", async (req, res, next) => {
         throw {
           messenge: "Recipe not exists."
         };
-      }
-      if (data.dataValues.idUser !== user.id) {
-        throw Unauthorized;
       }
       data
         .update({
@@ -148,12 +127,14 @@ router.put("/", async (req, res, next) => {
     }
     res.json({
       recipe,
-      recipeIngredients
+      recipeIngredients,
+      OK
     });
     await transaction.commit();
   } catch (err) {
     res.json({
-      err
+      err,
+      Error
     });
     await transaction.rollback();
   }

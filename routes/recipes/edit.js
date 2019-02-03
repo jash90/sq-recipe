@@ -128,13 +128,13 @@ router.put("/", async (req, res, next) => {
     res.json({
       recipe,
       recipeIngredients,
-      OK
+      status:OK
     });
     await transaction.commit();
   } catch (err) {
     res.json({
       err,
-      Error
+      status:Error
     });
     await transaction.rollback();
   }

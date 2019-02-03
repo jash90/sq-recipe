@@ -37,6 +37,7 @@ router.put("/", async (req, res, next) => {
         );
       }
     }
+    
     await Recipe.create(
       {
         name,
@@ -64,10 +65,10 @@ router.put("/", async (req, res, next) => {
       });
     }
 
-    res.json({ recipe, recipeIngredients, OK });
+    res.json({ recipe, recipeIngredients, status:OK });
     await transaction.commit();
   } catch (err) {
-    res.json({ err, Error });
+    res.json({ err, status:Error });
     await transaction.rollback();
   }
 });

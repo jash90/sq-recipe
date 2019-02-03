@@ -12,14 +12,14 @@ router.get("/", async (req, res, next) => {
         ingredients = data;
       })
       .catch(error => {
-        res.json({ error: error });
+        res.json({ error, status: Error });
       });
     await Recipe.findAll()
       .then(data => {
         recipes = data;
       })
       .catch(error => {
-        res.json({ error: error });
+        res.json({ error, status:Error });
       });
 
     for (let index = 0; index < recipes.length; index++) {
@@ -37,9 +37,9 @@ router.get("/", async (req, res, next) => {
       });
     }
 
-    await res.json({ recipes, OK });
+    await res.json({ recipes, status:OK });
   } catch (error) {
-    res.json({ error, Error });
+    res.json({ error, status:Error });
   }
 });
 

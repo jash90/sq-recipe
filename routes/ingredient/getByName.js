@@ -13,10 +13,10 @@ router.get("/", function(req, res, next) {
     }
   })
     .then(data => {
-      res.json({data, OK});
+      res.json({data, status:OK});
     })
     .catch(error => {
-      res.json({ error, Error });
+      res.json({ error, status:Error });
     });
 });
 

@@ -34,7 +34,7 @@ router.post("/", async (req, res, next) => {
           ingredients = data;
         })
         .catch(error => {
-          res.json({ error, Error});
+          res.json({ error, status: Error});
         });
 
       for (let index = 0; index < recipesIds.length; index++) {
@@ -66,9 +66,9 @@ router.post("/", async (req, res, next) => {
       }
     }
 
-    await res.json({ recipes, OK });
+    await res.json({ recipes, status:OK });
   } catch (error) {
-    res.json({ error, Error });
+    res.json({ error,  status: Error });
   }
 });
 

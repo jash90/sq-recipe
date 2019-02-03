@@ -5,10 +5,10 @@ const { Error, OK } = require("../../status");
 router.get("/", function(req, res, next) {
   Ingredient.findAll()
     .then(data => {
-      res.json({ data, OK });
+      res.json({ data, status :OK });
     })
     .catch(error => {
-      res.json({ error, Error });
+      res.json({ error, status: Error });
     });
 });
 

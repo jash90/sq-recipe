@@ -12,12 +12,12 @@ router.delete("/", async (req, res, next) => {
   })
     .then(data => {
       if (!data) {
-        res.json({ delete: false, id: id, OK });
+        res.json({ delete: false, id: id, status: OK });
       }
-      res.json({ delete: true, id: id, OK });
+      res.json({ delete: true, id: id, status: OK });
     })
     .catch(error => {
-      res.json({ delete: false, id: id, error: error, Error });
+      res.json({ delete: false, id: id, error: error, status: Error });
     });
 });
 

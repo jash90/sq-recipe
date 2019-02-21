@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("recipe", "admin", "psB2r#e4", {
-  host: "localhost",
+const sequelize = new Sequelize("graves", "graves", "145TalentedLockets", {
+  host: "89.40.119.116",
   dialect: "postgres",
   operatorsAliases: false,
   pool: {

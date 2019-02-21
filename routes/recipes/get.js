@@ -32,6 +32,13 @@ router.get("/", async (req, res, next) => {
       }).then(data => {
         data.forEach(async ri => {
           const recipeIngredient = ri.dataValues;
+          let item = _.find(ingredients, {
+            id: recipeIngredient.idIngredient
+          });
+          item = item.dataValues;
+          if (item) {
+            recipeIngredient.name = item.name;
+          }
           element.ingredients.push(recipeIngredient);
         });
       });
